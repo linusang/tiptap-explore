@@ -1,20 +1,36 @@
-<template>
-  <div>
-    <Tiptap v-model="html" />
-    <div class="content">
-      <h3>HTML</h3>
-      <pre><code>{{ html }}</code></pre>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-  import { ref } from "vue";
+  import rehtypeFormat from "rehype-format";
+  import rehypeParse from "rehype-parse";
+  import rehypeStringify from "rehype-stringify";
+  import { unified } from "unified";
+  import { computed, ref } from "vue";
 
-  import Tiptap from "./components/Tiptap.vue";
+  import MarkdownEditor from "./components/MarkdownEditor.vue";
+  import TiptapEditor from "./components/TiptapEditor.vue";
 
   const html = ref("<p>I'm running Tiptap with Vue.js. 🎉</p>");
+
+  const formattedHtml = computed(() => {
+    const processor = unified()
+      .use(rehypeParse, { fragment: true })
+      .use(rehtypeFormat)
+      .use(rehypeStringify, { quoteSmart: true });
+
+    return processor.processSync(html.value).toString();
+  });
 </script>
+<template>
+  <div class="grid grid-cols-3">
+    <TiptapEditor v-model="html" />
+    <MarkdownEditor v-model="html" />
+    <section>
+      <div>HTML</div>
+      <div class="content">
+        <pre><code>{{ formattedHtml }}</code></pre>
+      </div>
+    </section>
+  </div>
+</template>
 
 <style lang="scss">
   /* Basic editor styles */
@@ -30,12 +46,6 @@
   }
 
   .content {
-    padding: 1rem 0 0;
-
-    h3 {
-      margin: 1rem 0 0.5rem;
-    }
-
     pre {
       border-radius: 5px;
       color: #333;
