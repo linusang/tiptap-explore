@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { Underline } from "@tiptap/extension-underline";
   import StarterKit from "@tiptap/starter-kit";
   import { EditorContent, useEditor } from "@tiptap/vue-3";
   import { useVModel } from "@vueuse/core";
@@ -19,7 +20,7 @@
   const data = useVModel(props, "modelValue", emit);
 
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, Underline],
     content: data.value,
     onUpdate: () => {
       emit("update:modelValue", editor.value?.getHTML() ?? "");
