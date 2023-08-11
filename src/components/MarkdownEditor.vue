@@ -82,18 +82,19 @@
 </script>
 
 <template>
-  <div>
-    <div>
-      <textarea
-        v-model="markdown"
-        class="h-[200px] w-full border border-gray-400 p-1 font-mono focus:border-gray-900 focus:outline-none"
-      ></textarea>
+  <div class="grid grid-rows-[min-content_1fr]">
+    <div class="h-[4rem]">
+      <div>Markdown</div>
+      <button
+        class="rounded border border-black px-4 py-1 text-xs text-black"
+        @click="convert"
+      >
+        Convert
+      </button>
     </div>
-    <button
-      class="rounded border border-black px-4 py-2 text-black"
-      @click="convert"
-    >
-      Convert
-    </button>
+    <textarea
+      v-model="markdown"
+      class="h-full w-full border border-gray-400 p-1 font-mono text-xs focus:border-gray-900 focus:outline-none"
+    ></textarea>
   </div>
 </template>
