@@ -26,6 +26,7 @@
       Underline,
       Link.configure({
         protocols: ["mailto"],
+        openOnClick: false,
       }),
     ],
     content: data.value,
