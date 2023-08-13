@@ -37,7 +37,6 @@
       attributes: {
         class:
           "focus:outline-none prose border border-gray-400 p-1 focus:border-gray-900 h-full overflow-auto max-w-none",
-        // style: "max-width: unset",
       },
     },
   });
@@ -61,8 +60,8 @@
 </script>
 
 <template>
-  <div class="grid grid-rows-[min-content_1fr] overflow-auto">
-    <div class="h-[4rem]">
+  <div class="grid grid-rows-[auto_1fr] gap-4 overflow-auto">
+    <div>
       <div>WISIWYG</div>
       <EditorMenu v-if="editor" :editor="editor" />
     </div>

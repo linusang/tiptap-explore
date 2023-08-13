@@ -1,6 +1,7 @@
 import { Editor } from "@tiptap/vue-3";
 
 import RiBold from "~icons/ri/bold";
+import RiFormatClear from "~icons/ri/format-clear";
 import RiItalic from "~icons/ri/italic";
 import RiStrikethrough from "~icons/ri/strikethrough";
 import RiUnderline from "~icons/ri/underline";
@@ -38,6 +39,13 @@ export function useBasicCommands(editor: Editor) {
       isActive: () => editor.isActive("strike"),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().toggleStrike(),
+    },
+    {
+      name: "clear",
+      icon: RiFormatClear,
+      command: () => editor.chain().focus().unsetAllMarks().run(),
+      disabled: () =>
+        editor.view.state.selection.empty || !editor.can().unsetAllMarks(),
     },
   ];
 

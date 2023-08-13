@@ -13,7 +13,9 @@
     "vitest:watch": "vitest"
   },
   "dependencies": {
+    "@tiptap/extension-bubble-menu": "^2.0.4",
     "@tiptap/extension-bullet-list": "^2.0.4",
+    "@tiptap/extension-history": "^2.0.4",
     "@tiptap/extension-link": "^2.0.4",
     "@tiptap/extension-list-item": "^2.0.4",
     "@tiptap/extension-ordered-list": "^2.0.4",
@@ -34,6 +36,7 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@iconify-json/fluent": "^1.1.30",
     "@iconify-json/ri": "^1.1.12",
     "@tailwindcss/typography": "^0.5.9",
     "@typescript-eslint/eslint-plugin": "^5.26.0",

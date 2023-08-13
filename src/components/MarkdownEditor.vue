@@ -82,8 +82,8 @@
 </script>
 
 <template>
-  <div class="grid grid-rows-[min-content_1fr]">
-    <div class="h-[4rem]">
+  <div class="grid grid-rows-[auto_1fr] gap-4">
+    <div>
       <div>Markdown</div>
       <button
         class="rounded border border-black px-4 py-1 text-xs text-black"
@@ -94,7 +94,7 @@
     </div>
     <textarea
       v-model="markdown"
-      class="h-full w-full border border-gray-400 p-1 font-mono text-xs focus:border-gray-900 focus:outline-none"
+      class="h-full w-full resize-none border border-gray-400 p-1 font-mono text-xs focus:border-gray-900 focus:outline-none"
     ></textarea>
   </div>
 </template>

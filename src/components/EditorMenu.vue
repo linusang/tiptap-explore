@@ -3,10 +3,11 @@
   import { ref } from "vue";
 
   import { useBasicCommands } from "@/composables/basicCommands";
+  import { useHeadingCommands } from "@/composables/headingCommands";
+  import { useHistoryCommands } from "@/composables/historyCommands";
   import { useLinkCommands } from "@/composables/linkCommands";
   import { useListCommands } from "@/composables/listCommands";
 
-  // go to https://icones.js.org/collection/ri for more icons
   import EditorMenuButton from "./EditorMenuButton.vue";
 
   const props = defineProps<{
@@ -22,14 +23,18 @@
     props.editor,
     dialog
   );
+
+  const { historyCommands } = useHistoryCommands(props.editor);
+
+  const { headingCommands } = useHeadingCommands(props.editor);
 </script>
 
 <template>
-  <div class="flex gap-2">
+  <div class="flex flex-wrap gap-2">
     <section class="flex">
       <template v-for="commandButton in basicCommands" :key="commandButton.name"
         ><EditorMenuButton
-          :is-active="commandButton.isActive()"
+          :is-active="commandButton.isActive && commandButton.isActive()"
           :is-disabled="commandButton.disabled && commandButton.disabled()"
           @click="commandButton.command"
         >
@@ -60,6 +65,52 @@
         </EditorMenuButton>
       </template>
     </section>
+
+    <section class="flex">
+      <template
+        v-for="commandButton in historyCommands"
+        :key="commandButton.name"
+      >
+        <EditorMenuButton
+          :is-disabled="commandButton.disabled && commandButton.disabled()"
+          @click="commandButton.command"
+        >
+          <component :is="commandButton.icon" class="h-5 w-5" />
+        </EditorMenuButton>
+      </template>
+    </section>
+
+    <section class="flex">
+      <template
+        v-for="commandButton in headingCommands"
+        :key="commandButton.name"
+      >
+        <EditorMenuButton
+          :is-disabled="commandButton.disabled && commandButton.disabled()"
+          :is-active="commandButton.isActive && commandButton.isActive()"
+          @click="commandButton.command"
+        >
+          <component :is="commandButton.icon" class="h-5 w-5" />
+        </EditorMenuButton>
+      </template>
+    </section>
+
+    <!-- <BubbleMenu
+      v-if="editor"
+      :editor="editor"
+      :tippy-options="{ duration: 100, arrow: true, animation: 'fade' }"
+      class="rounded border border-gray-300 bg-gray-100 p-2 shadow-lg"
+    >
+      <template v-for="commandButton in basicCommands" :key="commandButton.name"
+        ><EditorMenuButton
+          :is-active="commandButton.isActive()"
+          :is-disabled="commandButton.disabled && commandButton.disabled()"
+          @click="commandButton.command"
+        >
+          <component :is="commandButton.icon" class="h-5 w-5" />
+        </EditorMenuButton>
+      </template>
+    </BubbleMenu> -->
   </div>
   <dialog ref="dialog">
     <div class="grid w-96 gap-4">
