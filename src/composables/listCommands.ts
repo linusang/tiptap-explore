@@ -13,6 +13,7 @@ export function useListCommands(editor: Editor) {
       command: () => editor.chain().focus().toggleBulletList().run(),
       isActive: () => editor.isActive("bulletList"),
       disabled: () => !editor.can().toggleBulletList(),
+      tooltip: "Bullet list",
     },
     {
       name: "orderedList",
@@ -20,18 +21,21 @@ export function useListCommands(editor: Editor) {
       command: () => editor.chain().focus().toggleOrderedList().run(),
       isActive: () => editor.isActive("orderedList"),
       disabled: () => !editor.can().toggleOrderedList(),
+      tooltip: "Ordered list",
     },
     {
-      name: "increase_indent",
+      name: "increaseIndent",
       icon: RiIndentIncrease,
       command: () => editor.chain().focus().sinkListItem("listItem").run(),
       disabled: () => !editor.can().sinkListItem("listItem"),
+      tooltip: "Increase indent",
     },
     {
-      name: "decrease_indent",
+      name: "decreaseIndent",
       icon: RiIndentDecrease,
       command: () => editor.chain().focus().liftListItem("listItem").run(),
       disabled: () => !editor.can().liftListItem("listItem"),
+      tooltip: "Decrease indent",
     },
   ];
 

@@ -10,12 +10,14 @@ export function useHistoryCommands(editor: Editor) {
       icon: FluentArrowUndo16Filled,
       command: () => editor.chain().focus().undo().run(),
       disabled: () => !editor.can().undo(),
+      tooltip: "Undo",
     },
     {
       name: "redo",
       icon: FluentArrowRedo16Filled,
       command: () => editor.chain().focus().redo().run(),
       disabled: () => !editor.can().redo(),
+      tooltip: "Redo",
     },
   ];
 

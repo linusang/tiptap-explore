@@ -19,12 +19,14 @@ export function useLinkCommands(
       isActive: () => editor.isActive("link"),
       disabled: () =>
         !editor.isActive("link") && editor.view.state.selection.empty,
+      tooltip: "Link",
     },
     {
       name: "unlink",
       icon: RiLinkUnlinkM,
       command: () => editor.chain().focus().unsetLink().run(),
       disabled: () => !editor.isActive("link"),
+      tooltip: "Unlink",
     },
   ];
 

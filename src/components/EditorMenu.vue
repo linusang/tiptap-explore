@@ -7,6 +7,7 @@
   import { useHistoryCommands } from "@/composables/historyCommands";
   import { useLinkCommands } from "@/composables/linkCommands";
   import { useListCommands } from "@/composables/listCommands";
+  import { useTableCommands } from "@/composables/tableCommands";
 
   import EditorMenuButton from "./EditorMenuButton.vue";
 
@@ -27,6 +28,8 @@
   const { historyCommands } = useHistoryCommands(props.editor);
 
   const { headingCommands } = useHeadingCommands(props.editor);
+
+  const { tableCommands } = useTableCommands(props.editor);
 </script>
 
 <template>
@@ -36,6 +39,7 @@
         ><EditorMenuButton
           :is-active="commandButton.isActive && commandButton.isActive()"
           :is-disabled="commandButton.disabled && commandButton.disabled()"
+          :tooltip="commandButton.tooltip"
           @click="commandButton.command"
         >
           <component :is="commandButton.icon" class="h-5 w-5" />
@@ -47,6 +51,7 @@
         <EditorMenuButton
           :is-active="commandButton.isActive && commandButton.isActive()"
           :is-disabled="commandButton.disabled && commandButton.disabled()"
+          :tooltip="commandButton.tooltip"
           @click="commandButton.command"
         >
           <component :is="commandButton.icon" class="h-5 w-5" />
@@ -59,6 +64,7 @@
         <EditorMenuButton
           :is-active="commandButton.isActive && commandButton.isActive()"
           :is-disabled="commandButton.disabled && commandButton.disabled()"
+          :tooltip="commandButton.tooltip"
           @click="commandButton.command"
         >
           <component :is="commandButton.icon" class="h-5 w-5" />
@@ -72,6 +78,7 @@
         :key="commandButton.name"
       >
         <EditorMenuButton
+          :tooltip="commandButton.tooltip"
           :is-disabled="commandButton.disabled && commandButton.disabled()"
           @click="commandButton.command"
         >
@@ -88,9 +95,30 @@
         <EditorMenuButton
           :is-disabled="commandButton.disabled && commandButton.disabled()"
           :is-active="commandButton.isActive && commandButton.isActive()"
+          :tooltip="commandButton.tooltip"
           @click="commandButton.command"
         >
           <component :is="commandButton.icon" class="h-5 w-5" />
+        </EditorMenuButton>
+      </template>
+    </section>
+
+    <section>
+      <template
+        v-for="commandButton in tableCommands"
+        :key="commandButton.name"
+      >
+        <EditorMenuButton
+          :is-active="commandButton.isActive && commandButton.isActive()"
+          :is-disabled="commandButton.disabled && commandButton.disabled()"
+          :tooltip="commandButton.tooltip"
+          @click="commandButton.command"
+        >
+          <component
+            :is="commandButton.icon"
+            class="h-5 w-5"
+            :class="[commandButton.iconCss]"
+          />
         </EditorMenuButton>
       </template>
     </section>

@@ -15,6 +15,7 @@ export function useBasicCommands(editor: Editor) {
       isActive: () => editor.isActive("bold"),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().toggleBold(),
+      tooltip: "Bold",
     },
     {
       name: "italic",
@@ -23,6 +24,7 @@ export function useBasicCommands(editor: Editor) {
       isActive: () => editor.isActive("italic"),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().toggleItalic(),
+      tooltip: "Italic",
     },
     {
       name: "underline",
@@ -31,6 +33,7 @@ export function useBasicCommands(editor: Editor) {
       isActive: () => editor.isActive("underline"),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().toggleUnderline(),
+      tooltip: "Underline",
     },
     {
       name: "strike",
@@ -39,6 +42,7 @@ export function useBasicCommands(editor: Editor) {
       isActive: () => editor.isActive("strike"),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().toggleStrike(),
+      tooltip: "Strikethrough",
     },
     {
       name: "clear",
@@ -46,6 +50,7 @@ export function useBasicCommands(editor: Editor) {
       command: () => editor.chain().focus().unsetAllMarks().run(),
       disabled: () =>
         editor.view.state.selection.empty || !editor.can().unsetAllMarks(),
+      tooltip: "Clear formatting",
     },
   ];
 
