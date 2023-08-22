@@ -22,5 +22,6 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "cypress/**/*.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "src/cypress/**/*.[jt]s"]
 }
