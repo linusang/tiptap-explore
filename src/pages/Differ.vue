@@ -19,6 +19,7 @@
       showFiles: true,
       matching: "lines",
       outputFormat: "side-by-side",
+      synchronisedScroll: true,
     });
   }
 </script>
@@ -49,7 +50,6 @@
         Perform Diff
       </button>
     </div>
-
-    <div v-html="outputHtml"></div>
   </div>
+  <div class="px-8" v-html="outputHtml"></div>
 </template>
