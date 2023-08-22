@@ -9,7 +9,12 @@
   const html = ref("");
 
   onMounted(() => {
-    fetch("/sample-html.txt")
+    const url =
+      import.meta.env.BASE_URL === "/"
+        ? "/sample-html.txt"
+        : `${import.meta.env.BASE_URL}/sample-html.txt`;
+
+    fetch(url)
       .then((res) => res.text())
       .then((text) => {
         html.value = text;
