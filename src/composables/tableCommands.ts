@@ -3,7 +3,6 @@ import { Editor } from "@tiptap/vue-3";
 import FluentColumnArrowRight20Regular from "~icons/fluent/column-arrow-right-20-regular";
 import FluentTableAdd20Regular from "~icons/fluent/table-add-20-regular";
 import FluentTableCellsMerge20Regular from "~icons/fluent/table-cells-merge-20-regular";
-// import FluentTableCellsSplit20Regular from "~icons/fluent/table-cells-split-20-regular";
 import FluentTableDeleteColumn20Regular from "~icons/fluent/table-delete-column-20-regular";
 import FluentTableDeleteRow20Regular from "~icons/fluent/table-delete-row-20-regular";
 import FluentTableDismiss20Regular from "~icons/fluent/table-dismiss-20-regular";
@@ -26,7 +25,7 @@ export function useTableCommands(editor: Editor) {
       icon: FluentTableDismiss20Regular,
       command: () => editor.chain().focus().deleteTable().run(),
       disabled: () => !editor.isActive("table"),
-      tooltilp: "Delete table",
+      tooltip: "Delete table",
     },
     {
       name: "addColumnBefore",

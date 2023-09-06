@@ -12,15 +12,15 @@
   import Paragraph from "@tiptap/extension-paragraph";
   import Strike from "@tiptap/extension-strike";
   import Table from "@tiptap/extension-table";
-  import TableCell from "@tiptap/extension-table-cell";
-  import TableHeader from "@tiptap/extension-table-header";
   import TableRow from "@tiptap/extension-table-row";
   import Text from "@tiptap/extension-text";
   import { Underline } from "@tiptap/extension-underline";
-  import StarterKit from "@tiptap/starter-kit";
   import { EditorContent, useEditor } from "@tiptap/vue-3";
   import { useVModel } from "@vueuse/core";
-  import { onBeforeUnmount, watch } from "vue";
+  import { onBeforeUnmount, onMounted, watch } from "vue";
+
+  import AppTableCell from "@/tiptap-extensions/AppTableCell";
+  import AppTableHeader from "@/tiptap-extensions/AppTableHeader";
 
   import EditorMenu from "./EditorMenu.vue";
 
@@ -44,13 +44,6 @@
         protocols: ["mailto"],
         openOnClick: false,
       }),
-      // Table.configure({
-      //   resizable: true,
-      //   allowTableNodeSelection: true,
-      // }),
-      // TableRow,
-      // TableHeader,
-      // TableCell,
       Document,
       Paragraph,
       Text,
@@ -59,8 +52,8 @@
         resizable: true,
       }),
       TableRow,
-      TableHeader,
-      TableCell,
+      AppTableHeader,
+      AppTableCell,
       BulletList,
       ListItem,
       OrderedList,
@@ -138,7 +131,6 @@
 
       th {
         font-weight: bold;
-        text-align: left;
         background-color: #f1f3f5;
       }
 
@@ -146,10 +138,7 @@
         z-index: 2;
         position: absolute;
         content: "";
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+        inset: 0;
         background: rgba(200, 200, 255, 0.4);
         pointer-events: none;
       }
@@ -168,11 +157,6 @@
         margin: 0;
       }
     }
-  }
-
-  .tableWrapper {
-    padding: 1rem 0;
-    overflow-x: auto;
   }
 
   .resize-cursor {

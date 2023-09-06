@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref } from "vue";
 
-  // import htmlText from "@/assets/sample-html.txt";
   import HtmlViewer from "@/components/HtmlViewer.vue";
   import MarkdownEditor from "@/components/MarkdownEditor.vue";
   import TiptapEditor from "@/components/TiptapEditor.vue";
